@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  namespace :admin do
+
   devise_for :admins
-  root to: 'admin/homes#top'
+  namespace :admin do
+  root to: 'homes#top'
   resources :items
 end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
