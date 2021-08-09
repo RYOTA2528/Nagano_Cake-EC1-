@@ -12,9 +12,17 @@ class Admin::GenresController < ApplicationController
   end
 
   def edit
+    @genre = Genre.find(params[:id])
   end
 
   def update
+     @genre = Genre.find(params[:id])
+    if @genre.update(genre_params)
+    redirect_to admin_genres_path(@genres)
+    flash[:notice]='You have updated book successfully.'
+    else
+    render :edit
+    end
   end
 
  private
