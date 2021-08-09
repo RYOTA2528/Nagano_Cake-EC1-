@@ -1,0 +1,30 @@
+<main>
+  <% if @item.errors.any? %>
+  <%= @item.errors.count %>error prohibited this obj from being saved:
+  <% @item.errors.full_messages.each do |message| %>
+  <%= message %>
+  <% end %>
+  <% end %>
+<div class="containar">
+  <div class="row no-gutters">
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto rounded px-0 my-5">
+      <div class="form-body p-4">
+        <%= form_with model: @item, url: admin_item_path(@item.id), local:true do |f| %>
+        <div class="filed">
+          <p><span>商品画像<%= f.attachment_field :image, class: "w-100" %></span></p>
+          <p><span>商品名<%= f.text_field :name, class:"form-control", placeholder:"商品名" %></span></p>
+          <p><span>商品説明<%= f.text_area :introduction, class:"form-control", rows:"6", placeholder:"ここに説明を記述します" %></span></p>
+          <p><span>ジャンル<%= f.collection_select :genre_id, @genres, :id, :name, { prompt: "選択してください" } %></span></p>
+          <p><span>税抜価格<%= f.text_field :price, class:"form-control", placeholder:"1000" %>"円"</span></p>
+          <p><span>
+          <%= f.radio_button :is_active, :sale, checked: true %>
+          <%= f.label :is_active, "販売中", {value: :male, style: "display: inline-block;"} %>
+          <%= f.radio_button :is_active, :stop_selling %>
+          <%= f.label :is_active, "販売停止中", {value: :stop_selling, style: "display: inline-block;"} %></span></p>
+          <%= f.submit '変更を保存', class:"btn btn-lg btn-block btn-info mt-4" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+</main>

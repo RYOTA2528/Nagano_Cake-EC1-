@@ -11,7 +11,6 @@
       <div class="form-body p-4">
         <%= form_with model: @item, url: admin_items_path, local:true do |f| %>
             <p><span>商品画像<%= f.attachment_field :image, class: "w-100" %></span></p>
-            <!--<span class="input-group-text" aria-hidden="true"></span>-->
             <p><span>商品名<%= f.text_field :name, class:"form-control", placeholder:"商品名" %></span></p>
             <p><span>商品説明<%= f.text_area :introduction, class:"form-control", rows:"6", placeholder:"ここに説明を記述します" %></span></p>
             <p><span>ジャンル<%= f.collection_select :genre_id, @genres, :id, :name, { prompt: "選択してください" } %></span></p>

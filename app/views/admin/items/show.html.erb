@@ -4,7 +4,7 @@
     <div class="col-md-3">
       <h2>商品画像</h2>
       <div class="profile-container">
-       <%= attachment_image_tag current_admin, :image, :fill, 100, 100, format: 'jpeg', fallback: "img/no_image.jpg" %>
+       <%= attachment_image_tag @item, :image, :fill, 100, 100 %>
       </div>
     </div>
       <div class="col-md-8 offset-md-1">
@@ -22,12 +22,19 @@
         </p>
         <p>
          <strong>税込み価格<span>(税抜価格)円</span>   </strong>
-         <%= @item.price %>
          <%= @item.add_tax_price.to_s(:delimited) %>
+         (<%= @item.price %>)
+
         </p>
         <p>
          <strong>販売ステータス   </strong>
+         <% if @item.is_active == true %>
+         "販売中"
+         <% else %>
+         "販売停止中"
+         <% end %>
          <!--販売ステータスのどう表記すればいいのかわからないため一旦保留-->
-   </div>
+         <%= link_to "Edit", edit_admin_item_path(@item), class:"btn btn-lg btn-block btn-info mt-4" %>
+       </div>
  </div>
  </main>
