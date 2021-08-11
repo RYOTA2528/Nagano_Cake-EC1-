@@ -20,7 +20,6 @@ end
 
 
 
-
 # devise_scope :admin do
 #   get 'admin/sign_in' => 'admin/sessions#new'
 #   post '/admin/sign_in' => 'admin/sessions#create'
