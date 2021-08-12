@@ -15,7 +15,7 @@ devise_for :admins, path: "/admin", controllers: {
 
 
 scope module: :public do
-
+root to: 'homes#top'
 end
 
 
