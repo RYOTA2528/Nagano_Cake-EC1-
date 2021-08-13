@@ -37,7 +37,7 @@ class Admin::ItemsController < ApplicationController
     @item = Item.find(params[:id])
     if @item.update(item_params)
     redirect_to admin_item_path(@item)
-    flash[:notice]='You have updated book successfully.'
+    flash[:notice]='You have updated Item infomation successfully.'
     else
     render :edit
     end

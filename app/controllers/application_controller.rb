@@ -5,14 +5,17 @@ class ApplicationController < ActionController::Base
       #byebug
       if current_admin
         admin_root_path
-      else
+      else current_customer
         root_path
       end
     end
 
     def after_sign_out_path_for(resource)
-    new_admin_session_path
-    end
+      if current_admin
+        new_admin_session_path
+      else current_customer
+        root_path
+      end
 
     protected
 
