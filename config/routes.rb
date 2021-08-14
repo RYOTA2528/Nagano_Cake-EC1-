@@ -31,7 +31,7 @@ end
     root to: 'homes#top'
     resources :items
     resources :genres
-    resources :cou
+    resources :customers
    # 余裕あればgenresはonlyの指定を行う！
 
   end

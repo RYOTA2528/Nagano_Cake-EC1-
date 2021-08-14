@@ -29,11 +29,10 @@
         <p>
          <strong>販売ステータス   </strong>
          <% if @item.is_active == true %>
-         "販売中"
+         販売中
          <% else %>
-         "販売停止中"
+         販売停止中
          <% end %>
-         <!--販売ステータスのどう表記すればいいのかわからないため一旦保留-->
          <%= link_to "Edit", edit_admin_item_path(@item), class:"btn btn-lg btn-block btn-info mt-4" %>
        </div>
  </div>

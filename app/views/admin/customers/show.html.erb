@@ -1,1 +1,56 @@
-<h1>詳細ページ</h2>
+<main>
+ <div class="container px-5 px-sm-0">
+  <h2><span><%= @customer.last_name %><%= @customer.first_name %>さんの詳細画面</span></h2>
+  <div class="container px-5 px-sm-0">
+   <div class="row">
+    <div class="col-md-9">
+     <div class="row">
+      <div class="col-md-4 col-md-5">
+        <p>
+         <strong>会員ID</strong>
+         <%= @customer.id %>
+        </p>
+        <p>
+         <strong>氏名</strong>
+         <span><%= @customer.last_name %> <%= @customer.first_name %></span>
+        </p>
+        <p>
+         <strong>フリガナ</strong>
+         <span><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></span>
+        </p>
+        <p>
+         <strong>郵便番号</strong>
+         <%= @customer.postal_code %>
+        </p>
+        <p>
+        <p>
+         <strong>住所</strong>
+         <%= @customer.address %>
+        </p>
+        <p>
+        <p>
+         <strong>電話番号</strong>
+         <%= @customer.telephone_number %>
+        </p>
+        <p>
+         <strong>メールアドレス</strong>
+         <%= @customer.email %>
+        </p>
+        <p>
+         <strong>会員ステータス   </strong>
+         <% if @customer.is_deleted == true %>
+         退会
+         <% else %>
+         有効
+         <% end %>
+
+         <%= link_to "Edit", edit_admin_customer_path(@customer), class:"btn btn-lg btn-block btn-info mt-4" %>
+         <!--<注文履歴一覧をみるのボタン作成>-->
+         <!--→会員詳細ページで[注文履歴一覧を見る]のボタン並びに機能の実装を行ってない-->
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</main>
