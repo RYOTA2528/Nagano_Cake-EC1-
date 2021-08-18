@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
 
-devise_for :customers, controllers: {
+devise_for :customers, skip: 'registrations', controllers: {
   sessions:      'public/sessions',
-  passwords:     'public/passwords',
-  registrations: 'public/registrations'
+  passwords:     'public/passwords'
 }
+devise_scope :customer do
+    get '/customers/sign_up', to: 'public/registrations#new', as: :new_customer_registration
+    post '/customers', to: 'public/registrations#create', as: :customer_registration
+  end
+
 devise_for :admins, path: "/admin", controllers: {
   sessions:      'admin/sessions',
   passwords:     'admin/passwords',
@@ -17,9 +21,10 @@ devise_for :admins, path: "/admin", controllers: {
 scope module: :public do
 root to: 'homes#top'
 get 'about', to: 'homes#about'
+resource :customers, only: [:edit, :update]
 get 'customers/my_page', to: 'customers#show'
-get 'customers/edit', to: 'customers#edit'
-patch 'customers', to: 'customers#update'
+# get 'customers/edit', to: 'customers#edit'
+# patch 'customers', to: 'customers#update'
 get 'customers/unsubscribe', to: 'customers#unsubscribe'
 patch 'customers/withdraw', to: 'customers#withdraw'
 end

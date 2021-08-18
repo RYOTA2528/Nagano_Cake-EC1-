@@ -6,11 +6,10 @@
   <% end %>
   <% end %>
 <h2>会員情報編集画面</h2>
-あああああああああああああああ
+
 <div class="row">
  <div class="col-md-9">
-  <%= form_with model: current_customer, local: true do |f| %>
-
+  <%= form_with model: current_customer, url: customers_path, local: true do |f| %>
   <div class="form-group form-inline" >
      <%= f.label :名前, class:"col-3 offset-md-2" %><br />
       <%= f.text_field :last_name, class:"form-control"%><br />
