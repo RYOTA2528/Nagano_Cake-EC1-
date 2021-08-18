@@ -16,7 +16,12 @@ devise_for :admins, path: "/admin", controllers: {
 
 scope module: :public do
 root to: 'homes#top'
-get '/about' =>'abouts#top'
+get 'about', to: 'homes#about'
+get 'customers/my_page', to: 'customers#show'
+get 'customers/edit', to: 'customers#edit'
+patch 'customers', to: 'customers#update'
+get 'customers/unsubscribe', to: 'customers#unsubscribe'
+patch 'customers/withdraw', to: 'customers#withdraw'
 end
 
 
@@ -28,7 +33,6 @@ end
 # end
 
   namespace :admin do
-
     root to: 'homes#top'
     resources :items
     resources :genres

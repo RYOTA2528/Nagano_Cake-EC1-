@@ -1,0 +1,29 @@
+// Place all the styles related to the public/customers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.table-demo {
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 2em;
+}
+
+.table-demo th,
+.table-demo td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.table-demo th {
+    background-color: #f5f5f5;
+}
+
+@media screen and (min-width: 600px) {
+    .table-demo th {
+        width: 20%;
+    }
+
+    .table-demo td {
+        width: 80%;
+    }
+}

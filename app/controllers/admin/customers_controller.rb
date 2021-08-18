@@ -1,5 +1,5 @@
 class Admin::CustomersController < ApplicationController
-
+before_action :ensure_correct_admin, only: [:index, :show, :update]
   def index
   @customers = Customer.all
   end

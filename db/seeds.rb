@@ -8,4 +8,5 @@
 Admin.create!(
    email: '1216022@gmail.com',
    encrypted_password: 'morio0228',
+   admin: true
 )
