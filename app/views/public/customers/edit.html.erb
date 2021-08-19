@@ -9,7 +9,7 @@
 
 <div class="row">
  <div class="col-md-9">
-  <%= form_with model: current_customer, url: customers_path, local: true do |f| %>
+  <%= form_with model: @customer, url: customers_path, local: true do |f| %>
   <div class="form-group form-inline" >
      <%= f.label :名前, class:"col-3 offset-md-2" %><br />
       <%= f.text_field :last_name, class:"form-control"%><br />
@@ -43,10 +43,14 @@
     <!--placeholder:"sample@example.com", autofocus: true, autocomplete: "email"-->
    </div></br>
 
-   <div class="actions">
-    <%= f.submit "編集内容を保存する" %>
-   </div>
+  <div class="actions row offset-md-2">
+ 　　<%= f.submit "編集内容を保存する" %>
   <% end %>
+   <%= link_to '退会する', customers_unsubscribe_path(@customer), class:"btn btn-lg btn-block btn-info mt-2" %>
+  </div>
+  <!--<%#= link_to '退会しない', customers_my_page_path(@customer) %>-->
+
+
  </div>
 </div>
 </main>

@@ -23,10 +23,9 @@ root to: 'homes#top'
 get 'about', to: 'homes#about'
 resource :customers, only: [:edit, :update]
 get 'customers/my_page', to: 'customers#show'
-# get 'customers/edit', to: 'customers#edit'
-# patch 'customers', to: 'customers#update'
 get 'customers/unsubscribe', to: 'customers#unsubscribe'
 patch 'customers/withdraw', to: 'customers#withdraw'
+put 'customers/withdraw', to: 'customers#withdraw'
 end
 
 
