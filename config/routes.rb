@@ -21,11 +21,14 @@ devise_for :admins, path: "/admin", controllers: {
 scope module: :public do
 root to: 'homes#top'
 get 'about', to: 'homes#about'
+
 resource :customers, only: [:edit, :update]
 get 'customers/my_page', to: 'customers#show'
 get 'customers/unsubscribe', to: 'customers#unsubscribe'
 patch 'customers/withdraw', to: 'customers#withdraw'
 put 'customers/withdraw', to: 'customers#withdraw'
+
+resources :addresses
 end
 
 

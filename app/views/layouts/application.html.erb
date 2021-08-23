@@ -24,7 +24,7 @@
           <% if customer_signed_in? %>
            <li>会員</li>
            <li class="nav-item">
-            <%= link_to "マイページ", root_path, class:'nav-link' %>
+            <%= link_to "マイページ", customers_my_page_path, class:'nav-link' %>
             <!--※重要※マイページのlink_to作成は一旦保留。（public/customersコントローラーとURLの設定ががまだ未設定）その為、今はわざと遷移先をpublic/homes(つまりTOPページ)で設定した。-->
            </li>
            <li class="nav-item">
