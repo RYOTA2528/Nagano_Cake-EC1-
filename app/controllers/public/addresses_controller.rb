@@ -26,7 +26,7 @@ class Public::AddressesController < ApplicationController
   def update
     @address = Address.find(params[:id])
     @address.customer_id = current_customer.id
-    if @address.save(address_params)
+    if @address.update(address_params)
     redirect_to addresses_path(@addresses)
     flash[:notice]='You have updated Address information  successfully.'
     else
