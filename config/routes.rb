@@ -29,6 +29,8 @@ patch 'customers/withdraw', to: 'customers#withdraw'
 put 'customers/withdraw', to: 'customers#withdraw'
 
 resources :addresses
+
+resources :items, only: [:index, :show]
 end
 
 

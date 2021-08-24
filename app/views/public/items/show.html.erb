@@ -1,0 +1,25 @@
+ <p id="notice"></p>
+ <div class="container px-5 px-sm-0">
+  <div class="row pt-5">
+   <div class="col-md-2">
+   ジャンル検索用スペース
+    </div>
+   <div class="offset-md-1 col-md-1">
+    <%= attachment_image_tag @item, :image, :fill, 300, 300 %>
+   </div>
+   <div class="offset-md-3 col-md-4">
+    <h1><%= @item.name %></h1><br />
+    <h2><%= @item.introduction %></h2><br />
+    <h3><%= @item.add_tax_price.to_s(:delimited) %>(税込)</h3>
+    <%= form_for(@item) url root_path  do |f| %>
+    <!--↑明日のうちに修正-->
+    <div>
+     <%= f.select :name, [[1], [2], [3]] %>
+    </div>
+    <div class="actions">
+     <%= f.submit "カートに入れる" %>
+    </div>
+     <% end %>
+   </div>
+  <!--</div>-->
+ </div>
