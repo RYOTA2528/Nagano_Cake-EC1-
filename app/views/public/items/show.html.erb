@@ -10,11 +10,13 @@
    <div class="offset-md-3 col-md-4">
     <h1><%= @item.name %></h1><br />
     <h2><%= @item.introduction %></h2><br />
-    <h3><%= @item.add_tax_price.to_s(:delimited) %>(税込)</h3>
-    <%= form_for(@item) url root_path  do |f| %>
-    <!--↑明日のうちに修正-->
+    <h3><%= @item.with_tax_price.to_s(:delimited) %>(税込)</h3>
+    <%= form_with model: @cart_item, url: cart_items_path, local:true do |f| %>
     <div>
-     <%= f.select :name, [[1], [2], [3]] %>
+     <%= f.select :amount, *[1..10] ,{ prompt: "個数選択" } %>
+    </div>
+     <%= f.hidden_field :item_id, value: @item.id %>
+    <div>
     </div>
     <div class="actions">
      <%= f.submit "カートに入れる" %>

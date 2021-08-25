@@ -29,8 +29,10 @@ patch 'customers/withdraw', to: 'customers#withdraw'
 put 'customers/withdraw', to: 'customers#withdraw'
 
 resources :addresses
-
 resources :items, only: [:index, :show]
+
+resources :cart_items, only: [:create, :index, :update, :destroy]
+delete 'cart_items/destroy_all', to: 'cart_items#destroy_all'
 end
 
 
