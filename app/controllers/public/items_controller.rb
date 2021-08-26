@@ -5,6 +5,7 @@ def index
 end
 
 def show
+ @cart_item =CartItem.new
  @item = Item.find(params[:id])
  @genre =@item.genre
 end

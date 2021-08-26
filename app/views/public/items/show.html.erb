@@ -11,8 +11,9 @@
     <h1><%= @item.name %></h1><br />
     <h2><%= @item.introduction %></h2><br />
     <h3><%= @item.with_tax_price.to_s(:delimited) %>(税込)</h3>
+
     <%= form_with model: @cart_item, url: cart_items_path, local:true do |f| %>
-    <div>
+    <div>s
      <%= f.select :amount, *[1..10] ,{ prompt: "個数選択" } %>
     </div>
      <%= f.hidden_field :item_id, value: @item.id %>

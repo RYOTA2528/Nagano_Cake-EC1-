@@ -7,17 +7,26 @@
   <div class="row">
    <table class="table table-hober table-inverse ">
     <thead>
+    <th>商品名</th>
+    <th>数量</th>
     <th>単価(税込)</th>
     <th>小計</th>
     </thead>
 <tbody>
 <% @cart_items.each do |cart_item| %>
-    <tr>
-        <td><%= cart_item.item.with_tax_price %></td>
-        <td><%= cart_item.subtotal %></td>
-        <% @合計金額 +=  cart_item.subtotal %>
-    </tr>
+ <tr>
+  <td><%= cart_item.item.name %>></td>
+  <td><%= form_with model:cart_item, local:true do |f| %>
+   <%= f.select :amount, *[1..30] ,{ prompt: "個数選択" } %>
+   <%= f.submit "変更", class:"btn btn-lg btn-block btn-info mt-4" %></td>
+  <td><%= cart_item.item.with_tax_price %></td>
+  <td><%= cart_item.subtotal %></td>
+   <% @sum +=  cart_item.subtotal %>
 <% end %>
+<% end %>
+  </tr>
 </tbody>
   </div>
+<th>合計金額</th>
+<td><%= @sum %></td>
 </div>
