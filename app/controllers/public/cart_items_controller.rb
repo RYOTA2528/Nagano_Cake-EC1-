@@ -20,7 +20,7 @@ class Public::CartItemsController < ApplicationController
  end
 
  def update
-  
+
   @cart_item = CartItem.find(params[:id])
   if @cart_item.update(cart_item_params)
    redirect_to cart_items_path(@cart_items)
@@ -33,13 +33,13 @@ class Public::CartItemsController < ApplicationController
  def destroy
    cart_item =CartItem.find(params[:id])
    cart_item.destroy
-   redirect_to cart_item_path
+   redirect_to cart_items_path
    flash[:notice]='Address was successfully destroyed.'
  end
 
  def destroy_all
   CartItem.destroy_all
-  current_user.cart_items.destroy_all
+  current_customer.cart_items.destroy_all
   redirect_to cart_items_path
  end
 
