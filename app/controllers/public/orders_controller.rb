@@ -2,8 +2,8 @@ class Public::OrdersController < ApplicationController
 
  def new
    @order = Order.new
-   @order.postal_code = current_customer.postal_code
-   @order.address = current_customer.address
+   # @order.postal_code = current_customer.postal_code
+   # @order.address = current_customer.address
    # @order =current_customer.address_id
  end
 

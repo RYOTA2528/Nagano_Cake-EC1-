@@ -9,6 +9,7 @@
   <div class="row">
    <div class="col-md-10">
     <%= form_with model: @order, url: orders_path(@order), local: true do |f| %>
+      <%= f.hidden_field :shipping_cost, value: 800 %>
     <div>
      <h4>支払方法</h4>
      <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
@@ -20,9 +21,9 @@
      <h4>お届け先</h4>
      <%= f.radio_button :address, "my_address" %>
      <%= f.label :address, "ご自身の住所" %><br />
-     〒<%= @order.postal_code %><br />
-     <%= @order.address %>
-     <!--<%#= f.hidden_field :address, value: @order.id %>--> *
+     〒<%= current_customer.postal_code %><br />
+     <%= current_customer.address %>
+     <!--<%#= f.hidden_field :address, value: @order.id %>-->
     </div>
     <div class="pb-1">
      <%= f.radio_button :address, "registration_all_address" %>
