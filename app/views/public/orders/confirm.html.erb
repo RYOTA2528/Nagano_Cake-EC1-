@@ -1,0 +1,60 @@
+<p id="notice"></p>
+<div class="container px-5 px-sm-0">
+ <div class="row col-md-3 col-md-8">
+  <h2>ショッピングカート</h2>
+ </div>
+  <div class="row">
+   <table class="table table-hober table-inverse col-5">
+    <thead>
+     <th>商品名</th>
+     <th>単価（税込）</th>
+     <th>数量</th>
+     <th>小計</th>
+     <th></th>
+    </thead>
+    <tbody>
+    <% @sum = 0 %>
+    <% @cart_items.each do |cart_item| %>
+     <tr>
+      <td><%= cart_item.item.name %></td>
+      <td><%= cart_item.item.with_tax_price %></td>
+      <td><%= cart_item.amount %></td>
+      <!--↑は実際にある数だから違う可能性あるかもしれない…-->
+      <td><%= cart_item.subtotal %></td>
+      <% @sum +=  cart_item.subtotal %>
+      <% end %>
+    </tbody>
+   </table>
+     <!--送料、商品合計額、請求金額-->
+  <table class="table table-hober table-inverse col-3 offset-1">
+   <thead>
+     <th>送料</th>
+     <th>商品合計額</th>
+     <th>請求金額</th>
+   </thead>
+   <tbody>
+     <tr>
+      <td><%= 800 %></td>
+      <td><%= @sum %></td>
+      <td><%= 800 + @sum %></td>
+     </tr>
+   </tbody>
+  </div><br />
+   <div class = "">
+    <div class = col-3>
+     <h4>支払方法</h4>
+     <%= @order.payment_method_i18n %>
+     <h4>お届け先</h4>
+     <%= @order.postal_code %> <%=@order.address %> <%=@order.name %>
+    </div>
+   </div>
+   <div class ="">
+   <%= form_with model: @order, url: orders_path, local: true do |f| %>
+    <%= f.hidden_field :address, value: @order.address %>
+    <%= f.hidden_field :payment_method_i18n, value: @order.payment_method_i18n %>
+    <%= f.hidden_field :postal_code, value: @order.postal_code %>
+    <%= f.hidden_field :name, value: @order.name %>
+    <%= f.hidden_field :shipping_cost, value: @order.shipping_cost %>
+    <%= f.submit '注文を確定する', class:"btn btn-lg btn-block btn-info mt-4 col-3 offset-5" %>
+   <% end %>
+   </div>

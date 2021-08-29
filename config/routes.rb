@@ -34,9 +34,10 @@ resources :items, only: [:index, :show]
 resources :cart_items, only: [:create, :index, :update, :destroy]
 delete 'cart_items/destroy_all', to: 'cart_items#destroy_all'
 
-resources :orders, only: [:new, :create, :index, :show]
 post '/orders/confirm', to: 'orders#confirm'
 get '/orders/complete', to: 'orders#complete'
+resources :orders, only: [:new, :create, :index, :show]
+
 
 end
 
