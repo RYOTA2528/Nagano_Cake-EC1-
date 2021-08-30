@@ -1,0 +1,37 @@
+<p id="notice"></p>
+<h2>注文履歴一覧</h2>
+<div class="container px-5 px-sm-0">
+   注文情報
+ <div class="row">
+  <div class= "col-md-6">
+    <table class="table table-bordered">
+     <tr>
+      <th>注文日</th>
+      <td><%= l @order.created_at %></td>
+     </tr>
+     <tr>
+      <th>配送先</th>
+      <td><%= @order.postal_code %><%= @order.address %><%= @order.name %></td>
+     </tr>
+     <tr>
+      <th>支払方法</th>
+      <td><%=@order.payment_method %></td>
+     </tr>
+     <tr>
+      <th>ステータス</th>
+      <td><% if @order.status == 0 %>
+        入金待ち
+       <% elsif @order.status == 1 %>
+        入金確認
+    　  <% elsif @order.status == 2 %>
+    　 　 制作中
+    　  <% elsif @order.status == 3 %>
+    　   発送準備中
+    　  <% elsif @order.status == 4 %>
+    　   発送済み
+      <% end %></td>
+     </tr>
+    </table>
+  </div>
+ </div>
+</div>

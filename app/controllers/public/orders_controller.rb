@@ -2,9 +2,6 @@ class Public::OrdersController < ApplicationController
 
  def new
    @order = Order.new
-   # @order.postal_code = current_customer.postal_code
-   # @order.address = current_customer.address
-   # @order =current_customer.address_id
  end
 
  def create
@@ -31,10 +28,12 @@ class Public::OrdersController < ApplicationController
  end
 
  def show
-
+   @order=Order.find(params[:id])
  end
 
  def index
+  @order =Order.find_by(params[:created_at])
+  @orders =current_customer.orders
  end
 
  def confirm
@@ -61,7 +60,7 @@ class Public::OrdersController < ApplicationController
  private
 
  def order_params
-    params.require(:order).permit(:customer_id, :postal_code, :address, :name, :shipping_cost, :total_payment, :payment_method, :status)
+    params.require(:order).permit(:customer_id, :postal_code, :address, :name, :shipping_cost, :total_payment, :payment_method, :status, :created_at)
  end
 
 end

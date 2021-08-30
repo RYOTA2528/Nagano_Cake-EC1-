@@ -1,0 +1,41 @@
+<p id="notice"></p>
+<div class="container px-5 px-sm-0">
+ <div class="row col-md-3 col-md-8">
+  <h2>注文履歴一覧</h2>
+ </div>
+ <div class="row">
+  <table class="table table-hober table-inverse ">
+   <thead>
+    <th>注文日</th>
+    <th>配送先</th>
+    <th>注文商品</th>
+    <th>支払金額</th>
+    <th>ステータス</th>
+    <th>注文詳細</th>
+   </thead>
+<tbody>
+<% @orders.each do |order| %>
+ <tr>
+  <td><%= l order.created_at %></td>
+  <td><%= order.postal_code %><%= order.address %><%= order.name %></td>
+  <td>
+   <% order.order_details.each do |order_detail| %>
+     <%= order_detail.item.name %>
+   <% end %>
+  </td>
+  <td><%= order.total_payment %></td>
+  <td><% if order.status == 0 %>
+        入金待ち
+       <% elsif order.status == 1 %>
+        入金確認
+    　  <% elsif order.status == 2 %>
+    　 　 制作中
+    　  <% elsif order.status == 3 %>
+    　   発送準備中
+    　  <% elsif order.status == 4 %>
+    　   発送済み
+      <% end %></td>
+  <td><%= link_to "表示する", order_path(order), class:"btn btn-lg btn-block btn-info mt-1" %></td>
+<% end %>
+  </tr>
+</tbody>
