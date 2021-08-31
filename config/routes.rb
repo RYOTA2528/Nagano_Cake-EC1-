@@ -54,6 +54,8 @@ end
     resources :items
     resources :genres
     resources :customers
+    resources :ordes, only: [:show, :update]
+    resources :order_details, only: [:update]
    # 余裕あればgenresはonlyの指定を行う！
 
   end
