@@ -17,22 +17,24 @@
 <% @orders.each do |order| %>
  <tr>
   <td><%= l order.created_at %></td>
-  <td><%= order.postal_code %><%= order.address %><%= order.name %></td>
+  <td><%= order.postal_code %><br />
+      <%= order.address %><br />
+      <%= order.name %></td>
   <td>
    <% order.order_details.each do |order_detail| %>
      <%= order_detail.item.name %>
    <% end %>
   </td>
   <td><%= order.total_payment %></td>
-  <td><% if order.status == 0 %>
+  <td><% if order.status == "payment_waiting"  %>
         入金待ち
-       <% elsif order.status == 1 %>
+       <% elsif order.status == "payment_confirmation" %>
         入金確認
-    　  <% elsif order.status == 2 %>
+    　  <% elsif order.status =="in_production" %>
     　 　 制作中
-    　  <% elsif order.status == 3 %>
+    　  <% elsif order.status =="preparing_delivery" %>
     　   発送準備中
-    　  <% elsif order.status == 4 %>
+    　  <% elsif order.status == "delivered" %>
     　   発送済み
       <% end %></td>
   <td><%= link_to "表示する", order_path(order), class:"btn btn-lg btn-block btn-info mt-1" %></td>

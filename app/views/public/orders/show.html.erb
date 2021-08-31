@@ -1,7 +1,14 @@
 <p id="notice"></p>
 <h2>注文履歴一覧</h2>
 <div class="container px-5 px-sm-0">
-   注文情報
+ <div class="row">
+  <div class= ”col-md”>
+  注文情報
+  </div>
+  <div class ="col-md offset-6">
+  請求情報
+  </div>
+ </div>
  <div class="row">
   <div class= "col-md-6">
     <table class="table table-bordered">
@@ -19,19 +26,65 @@
      </tr>
      <tr>
       <th>ステータス</th>
-      <td><% if @order.status == 0 %>
+      <td><% if @order.status == "payment_waiting"  %>
         入金待ち
-       <% elsif @order.status == 1 %>
+       <% elsif @order.status == "payment_confirmation" %>
         入金確認
-    　  <% elsif @order.status == 2 %>
+    　  <% elsif @order.status =="in_production" %>
     　 　 制作中
-    　  <% elsif @order.status == 3 %>
+    　  <% elsif @order.status =="preparing_delivery" %>
     　   発送準備中
-    　  <% elsif @order.status == 4 %>
+    　  <% elsif @order.status == "delivered" %>
     　   発送済み
-      <% end %></td>
+      <% end %>
+      </td>
      </tr>
     </table>
   </div>
+
+  <div class= "col-md-4 offset-1">
+   <table class="table table-bordered">
+   <tr>
+    <th>商品合計</th>
+    <% @sum = 0 %>
+    <td><%= @sum= @order.total_payment - @order.shipping_cost %></td>
+   </tr>
+   <tr>
+    <th>配送料</th>
+    <td><%= @order.shipping_cost %></td>
+   </tr>
+   <tr>
+    <th>請求額</th>
+    <td><%=@order.total_payment %></td>
+   </tr>
+   </table>
+  </div>
  </div>
+  <div class="row">
+   <div class="col-md-8">
+    <div class= ”col-md”>
+     注文内容
+    </div>
+    <table class="table table-bordered ml-4">
+     <thead>
+     <tr>
+      <th>商品</th>
+      <th>単価（税込み)</th>
+      <th>個数</th>
+      <th>小計</th>
+     </tr>
+     </thead>
+     <% @order.order_details.each do |order_detail| %>
+     <tbody>
+     <tr>
+      <td><%=order_detail.item.name %></td>
+      <td><%=order_detail.price %></td>
+      <td><%=order_detail.amount %></td>
+      <td><%=order_detail.subtotal %></td>
+     </tr>
+     </tbody>
+      <% end %>
+    </table>
+   </div>
+  </div>
 </div>
