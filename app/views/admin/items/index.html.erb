@@ -1,7 +1,7 @@
 <p id="notice"></p>
 <div class="container px-5 px-sm-0">
-  <div class="row">
-    <table class="table table-hober table-inverse">
+ <div class="row">
+  <table class="table table-hober table-inverse">
        <thead>
     <tr>
       <th>商品ID</th>
@@ -11,7 +11,7 @@
       <th>ステータス</th>
     </tr>
   </thead>
-   <tbody>
+    <tbody>
       <% @items.each do |item| %> <tr>
       <td>
       <%= item.id %>
@@ -34,6 +34,8 @@
          <% end %>
        </td>
      </tr><% end %>
-  </tbody>
-  </div>
+    </tbody>
+ </div>
+  </table>
+  <%= will_paginate @items, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
 </div>

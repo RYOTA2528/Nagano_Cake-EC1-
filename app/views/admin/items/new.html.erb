@@ -1,30 +1,47 @@
-<main>
+<p id="notice"></p>
   <% if @item.errors.any? %>
   <%= @item.errors.count %>error prohibited this obj from being saved:
   <% @item.errors.full_messages.each do |message| %>
   <%= message %>
   <% end %>
   <% end %>
-<div class="containar">
-  <div class="row no-gutters">
-    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto rounded px-0 my-5">
-      <div class="form-body p-4">
-        <%= form_with model: @item, url: admin_items_path, local:true do |f| %>
-            <p><span>商品画像<%= f.attachment_field :image, class: "w-100" %></span></p>
-            <p><span>商品名<%= f.text_field :name, class:"form-control", placeholder:"商品名" %></span></p>
-            <p><span>商品説明<%= f.text_area :introduction, class:"form-control", rows:"6", placeholder:"ここに説明を記述します" %></span></p>
-            <p><span>ジャンル<%= f.collection_select :genre_id, @genres, :id, :name, { prompt: "選択してください" } %></span></p>
-            <p><span>税抜価格<%= f.text_field :price, class:"form-control", placeholder:"1000" %>"円"</span></p>
-            <p><span>
-            <%= f.radio_button :is_active, :sale, checked: true %>
-            <%= f.label :is_active, "販売中", {value: :sale, style: "display: inline-block;"} %>
-            <%= f.radio_button :is_active, :stop_selling %>
-            <%= f.label :is_active, "販売停止中", {value: :stop_selling, style: "display: inline-block;"} %></span></p>
-            <%= f.submit '新規登録', class:"btn btn-lg btn-block btn-info mt-4" %>
-        <% end %>
-      </div>
-    </div>
+<div class="container px-5 px-sm-0">
+ <h3>商品新規登録</h3><br />
+ <%= form_with model: @item, url: admin_items_path, local:true do |f| %>
+ <div class="row">
+  <div class="col-md-3 offset-2">
+    <h4><%= f.label :image, "商品画像" %></h4>
+    <h4><%= f.label :name, "商品名" %></h4>
+    <h4><%= f.label :introduction, "商品説明" %></h4><br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <h4><%= f.label :genres, "ジャンル" %></h4>
+    <h4><%= f.label :genres, "税込価格" %></h4><br />
+     <h4><%= f.label :is_active, "販売ステータス" %></h4>
   </div>
+  <div class= "col-md-3 offset-1">
+   <div>
+    <%= f.attachment_field :image, class: "w-100" %>
+   </div></br />
+   <div>
+    <%= f.text_field :name, class:"form-control", placeholder:"商品名" %>
+    <%= f.text_area :introduction, class:"form-control", rows:"6", placeholder:"ここに説明を記述します" %>
+   </div>
+   <div>
+    <h4><%= f.collection_select :genre_id, @genres, :id, :name, { prompt: "選択してください" } %></h4>
+   </div>
+   <div>
+     <h4>
+      <%= f.text_field :price, class:"form-control", placeholder:"1000" %>円</h4>
+      <%= f.radio_button :is_active, :sale, checked: true %>
+      <%= f.label :is_active, "販売中", {value: :sale, style: "display: inline-block;"} %>
+      <%= f.radio_button :is_active, :stop_selling %>
+      <%= f.label :is_active, "販売停止中", {value: :stop_selling, style: "display: inline-block;"} %></span></p>
+      <%= f.submit '新規登録', class:"btn btn-lg btn-block btn-info mt-4" %>
+   </div>
+  </div>
+  <% end %>
+ </div>
 </div>
-</main>
-

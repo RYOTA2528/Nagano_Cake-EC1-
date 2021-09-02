@@ -2,7 +2,7 @@
 <div class="container px-5 px-sm-0">
  <div class="row col-md-3 col-md-8">
   <h2>ショッピングカート</h2>
-  <%= button_to "全て削除", cart_items_destroy_all_path, method: :delete, "data-confirm" => "本当に消しますか"%>
+  <%= link_to "全て削除", cart_items_destroy_all_path, method: :delete, "data-confirm" => "本当に消しますか"%>
  </div>
   <div class="row">
    <table class="table table-hober table-inverse ">

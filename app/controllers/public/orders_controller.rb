@@ -5,6 +5,7 @@ class Public::OrdersController < ApplicationController
  end
 
  def create
+  byebug
    @order = Order.new(order_params)
    @cart_items =CartItem.all
    @order.customer_id = current_customer.id

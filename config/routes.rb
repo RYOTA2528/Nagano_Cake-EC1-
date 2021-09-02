@@ -31,8 +31,8 @@ put 'customers/withdraw', to: 'customers#withdraw'
 resources :addresses
 resources :items, only: [:index, :show]
 
-resources :cart_items, only: [:create, :index, :update, :destroy]
 delete 'cart_items/destroy_all', to: 'cart_items#destroy_all'
+resources :cart_items, only: [:create, :index, :update, :destroy]
 
 post '/orders/confirm', to: 'orders#confirm'
 get '/orders/complete', to: 'orders#complete'
@@ -54,7 +54,7 @@ end
     resources :items
     resources :genres
     resources :customers
-    resources :ordes, only: [:show, :update]
+    resources :orders, only: [:show, :update]
     resources :order_details, only: [:update]
    # 余裕あればgenresはonlyの指定を行う！
 

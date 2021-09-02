@@ -1,7 +1,8 @@
 class Admin::CustomersController < ApplicationController
-before_action :ensure_correct_admin, only: [:index, :show, :update]
+before_action :authenticate_admin!,except: [:top]
   def index
     @customers = Customer.all
+    @customers = Customer.paginate(page: params[:page], per_page: 5)
   end
 
   def show

@@ -1,24 +1,24 @@
 class ApplicationController < ActionController::Base
-    # before_action :authenticate_user!,except: [:top]
     before_action :configure_permitted_parameters, if: :devise_controller?
 
-
     def after_sign_in_path_for(resource)
-      #byebug
-      if current_admin
+      case resource
+      when Admin
         admin_root_path
-      else current_customer
-        root_path
+      when Customer
+        customers_my_page_path
       end
     end
 
-    def after_sign_out_path_for(resource)
-      if current_admin
-        new_admin_session_path
-      else current_customer
-        root_path
-      end
+def after_sign_out_path_for(resource_or_scope)
+    if resource_or_scope == :customer
+      root_path
+    elsif resource_or_scope == :admin
+      new_admin_session_path
     end
+end
+
+
 
     protected
 
@@ -32,4 +32,7 @@ class ApplicationController < ActionController::Base
     # def configure_permitted_parameters
     # devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
     # end
+
+
 end
+

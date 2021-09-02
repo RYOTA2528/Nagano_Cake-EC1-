@@ -1,5 +1,5 @@
 class Public::CartItemsController < ApplicationController
-
+before_action :authenticate_customer!, only: [:create,:edit, :update, :destory, :destory_all]
  def create
    @cart_item = CartItem.new(cart_item_params)
    @cart_item.customer_id = current_customer.id
@@ -34,11 +34,10 @@ class Public::CartItemsController < ApplicationController
    cart_item =CartItem.find(params[:id])
    cart_item.destroy
    redirect_to cart_items_path
-   flash[:notice]='Address was successfully destroyed.'
+   flash[:notice]='CartItems was successfully destroyed.'
  end
 
  def destroy_all
-  CartItem.destroy_all
   current_customer.cart_items.destroy_all
   redirect_to cart_items_path
  end

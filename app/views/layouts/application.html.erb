@@ -25,14 +25,12 @@
            <li>会員</li>
            <li class="nav-item">
             <%= link_to "マイページ", customers_my_page_path, class:'nav-link' %>
-            <!--※重要※マイページのlink_to作成は一旦保留。（public/customersコントローラーとURLの設定ががまだ未設定）その為、今はわざと遷移先をpublic/homes(つまりTOPページ)で設定した。-->
            </li>
            <li class="nav-item">
-            <%= link_to "商品一覧", admin_items_path, class:'nav-link' %>
+            <%= link_to "商品一覧", items_path, class:'nav-link' %>
            </li>
            <li class="nav-item">
-            <%= link_to "カート", root_path, class:'nav-link' %>
-             <!--※重要カートのlink_to作成は一旦保留。（まだカート内商品のモデルやコントローラー、マイグレーション、ルーティング、アソシエーションの設定してないため）一旦は上記と同じくpubliv/homesとつなげとく-->
+            <%= link_to "カート", cart_items_path, class:'nav-link' %>
            </li>
            <li class="nav-item">
             <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
@@ -47,7 +45,6 @@
            </li>
            <li class="nav-item">
             <%= link_to "注文履歴一覧", admin_root_path, class:'nav-link' %>
-            <!--※重要：管理者側注文履歴一覧のlink_to作成は一旦保留。（まだ注文のモデルやコントローラー、マイグレーション、ルーティング、アソシエーションの設定してないため）一旦はadmin/homesとつなげとく-->
            </li>
            <li class="nav-item">
             <%= link_to "ジャンル一覧", admin_genres_path, class:'nav-link' %>
@@ -58,11 +55,11 @@
            <% else %>
            <li>ゲストユーザー</li>
            <li class="nav-item">
-            <%= link_to "About", admin_root_path, class:'nav-link' %>
+            <%= link_to "About", about_path, class:'nav-link' %>
            <!--※重要：ログイン前Aboutのlink_to作成は一旦保留。（まだAboutコントローラー（今回Aboutにモデルとアソシエーションは不要）ルーティング（これは単独でroute.rbへ記載））の作成をしてないため一旦はadmin/homesとつなげとく-->
            </li>
            <li class="nav-item">
-            <%= link_to "商品一覧", admin_items_path, class:'nav-link' %>
+            <%= link_to "商品一覧", items_path, class:'nav-link' %>
            </li>
            <li class="nav-item">
             <%= link_to "新規登録", new_customer_registration_path, class:'nav-link' %>

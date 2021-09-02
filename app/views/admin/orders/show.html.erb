@@ -1,0 +1,64 @@
+<p id="notice"></p>
+<div class="container px-5 px-sm-0">
+ <h2>注文履歴詳細</h2>
+<div class= "row">
+ <div class="col-md-2">
+   <h4>購入者</h4><br />
+   <h4>注文日</h4><br />
+   <h4>配送先</h4><br />
+   <h4>支払方法</h4><br />
+   <h4>注文ステータス</h4>
+ </div>
+ <div class ="col-md-8 offset-1">
+   <h4><%= @order.customer.last_name %></h4><br />
+   <h4><%= l @order.created_at %></h4><br />
+   <h4><%= @order.postal_code %><%= @order.address %><%= @order.name %></h4><br />
+   <h4><%= @order.payment_method_i18n %></h4><br />
+  <div><%= form_with model: @order, url: admin_order_path(@order), local:true do |f| %>
+   <h4><%= f.select :status, Order.statuses.keys.map {|k|[I18n.t("enums.order.status.#{k}"),k]}%></h4>
+       <%= f.submit '更新', class:"btn btn-lg btn-block btn-info mt-4" %>
+　　<% end %>
+　</div>
+ </div>
+</div>
+ <div class="row">
+  <div class="col-md-7">
+   <table class="table table-hober table-inverse">
+    <thead>
+     <th>商品名</th>
+     <th>単価(税込)</th>
+     <th>数量</th>
+     <th>小計</th>
+     <th>制作ステータス</th>
+     <th></th>
+    </thead>
+    <tbody>
+     <% @order.order_details.each do |order_detail| %>
+     <tr>
+      <td><%= order_detail.item.name %></td>
+      <td><%=order_detail.price %></td>
+      <td><%=order_detail.amount %></td>
+      <td><%=order_detail.subtotal %></td>
+
+      <td>
+       <%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id), method: :patch, local:true do |f| %>
+       <h4><%= f.select :making_status, OrderDetail.making_statuses.keys.map {|k|[I18n.t("enums.order_detail.making_status.#{k}"),k]}%></h4>
+      <%= f.submit '更新', class:"btn btn-lg btn-block btn-info mt-4" %>
+      <% end %>
+      </td>
+     </tr>
+     <% end %>
+   </table>
+  </div>
+  <div class="col-md-2 offset-1 pt-md-5">
+   <h4>商品合計</h4><br />
+   <h4>送料</h4><br />
+   <h4>請求金額合計</h4><br />
+  </div>
+  <div class="col-md-1 pt-md-5">
+    <% @sum = 0 %>
+   <!--<h4 class="pt-md-1"><%#= @sum= @order.total_payment - @order.shipping_cost %></h4> -->
+   <h4 class="pt-md-3"><%= @order.shipping_cost %></h4>
+   <h4 class="pt-md-3"><%=@order.total_payment %></h4>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 class Public::CustomersController < ApplicationController
-before_action :authenticate_customer!
+before_action :authenticate_customer!, only: [:edit, :update, :unsubscribe, :withdraw]
 
 def show
 @customer = current_customer
