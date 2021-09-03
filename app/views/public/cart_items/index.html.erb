@@ -1,11 +1,11 @@
 <p id="notice"></p>
 <div class="container px-5 px-sm-0">
- <div class="row col-md-3 col-md-8">
+ <div class="row col-md-3 col-md-12">
   <h2>ショッピングカート</h2>
-  <%= link_to "全て削除", cart_items_destroy_all_path, method: :delete, "data-confirm" => "本当に消しますか"%>
+  <%= link_to "全て削除", cart_items_destroy_all_path, method: :delete, "data-confirm" => "本当に消しますか", class:"btn btn-lg btn-block btn-info mt-4 col-2 offset-4"%>
  </div>
   <div class="row">
-   <table class="table table-hober table-inverse ">
+   <table class="table border table-hober table-inverse ">
     <thead>
     <th>商品名</th>
     <th>数量</th>
@@ -16,25 +16,39 @@
 <tbody>
 <% @cart_items.each do |cart_item| %>
  <tr>
-  <td><%= cart_item.item.name %>></td>
-  <td><%= form_with model:cart_item, local:true do |f| %>
+  <td>
+   <%#= attachment_image_tag book, :book_image, :fill, 60, 60, fallback: "no_image.jpg"%>
+   <%#= attachment_image_tag cart_item, :image, :fill, 100, 100 %>
+   <%= cart_item.item.name %>
+  </td>
+  <div class="inline-block">
+  <td inline-block><%= form_with model:cart_item, local:true do |f| %>
    <%= f.select :amount, *[1..30] ,{ prompt: "個数選択" } %>
-   <%= f.submit "変更", class:"btn btn-lg btn-block btn-info mt-4" %></td>
+   <%= f.submit "変更", class:"btn btn-lg btn-block btn-info mt-4 col-md-5" %>
+  </td>
+  </div>
   <td><%= cart_item.item.with_tax_price %></td>
   <td><%= cart_item.subtotal %></td>
-  <td><%= link_to "削除する", cart_item_path(cart_item), method: :delete, "data-confirm" => "本当に消しますか" %></td>
+  <td><%= link_to "削除する", cart_item_path(cart_item), method: :delete, "data-confirm" => "本当に消しますか", class:"btn btn-lg btn-block btn-info mt-4 col-md-6" %></td>
    <% @sum +=  cart_item.subtotal %>
 <% end %>
 <% end %>
   </tr>
 </tbody>
-  </div>
-  </table>
-
-<table border="1">
-<tr>
-<th>合計金額</th>
-<td><%= @sum %></td>
-</tr>
 </table>
+</div>
+<%= link_to "買い物を続ける", root_path, method: :get, class:"btn btn-lg btn-block btn-info mt-4 col-md-2" %>
+<div>
+</div>
+ <div class="row offset-9">
+ <table border="1">
+ <tr>
+ <th>合計金額</th>
+ <td><%= @sum %></td>
+ </tr>
+ </table>
+ </div>
+ <div>
+  <%= link_to "情報入力に進む", new_order_path, method: :get, class:"btn btn-lg btn-block btn-info mt-4 col-2 offset-5" %>
+ </div>
 </div>

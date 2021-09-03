@@ -18,3 +18,5 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+require("@fortawesome/fontawesome-free/js/all")

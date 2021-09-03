@@ -1,16 +1,25 @@
 <p id="notice"></p>
 <div class="container px-5 px-sm-0">
+ <div clas="row">
+  <div class="col-3">
+    <h3> 商品一覧</h3>
+  </div>
+  <div class="offset-7">
+   <%= link_to  new_admin_item_path, class: "btn btn-danger", method: :get do %>
+ <i class="fas fa-plus-square"></i>
+   <% end %>
+ </div>
  <div class="row">
   <table class="table table-hober table-inverse">
-       <thead>
+   <thead>
     <tr>
       <th>商品ID</th>
-      <th >商品名</th>
+      <th>商品名</th>
       <th>税抜価格</th>
       <th>ジャンル</th>
       <th>ステータス</th>
     </tr>
-  </thead>
+   </thead>
     <tbody>
       <% @items.each do |item| %> <tr>
       <td>

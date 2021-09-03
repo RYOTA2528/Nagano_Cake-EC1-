@@ -57,7 +57,7 @@
   </div>
   <div class="col-md-1 pt-md-5">
     <% @sum = 0 %>
-   <!--<h4 class="pt-md-1"><%#= @sum= @order.total_payment - @order.shipping_cost %></h4> -->
+   <h4 class="pt-md-1"><%= @sum= (@order.total_payment - @order.shipping_cost).to_s %></h4>
    <h4 class="pt-md-3"><%= @order.shipping_cost %></h4>
    <h4 class="pt-md-3"><%=@order.total_payment %></h4>
   </div>

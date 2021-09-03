@@ -4,6 +4,6 @@
     <p>退会する場合は、『退会する』をクリックしてください。</p>
   </div>
   <div>
-    <%= link_to '退会しない', customers_my_page_path(@customer) %>
-    <%= link_to "退会する", customers_withdraw_path(@customer), method: :patch %>
+    <%= link_to '退会しない', customers_my_page_path(@customer),class:"btn btn-lg btn-block btn-info mt-4 col-md-3" %>
+    <%= link_to "退会する", customers_withdraw_path(@customer), method: :patch, class:"btn btn-lg btn-block btn-info mt-4 col-md-3" %>
   </div>

@@ -1,11 +1,11 @@
 class Public::OrdersController < ApplicationController
-
+before_action :authenticate_customer!, only: [:new, :create, :show, :index, :index, :confirm]
  def new
    @order = Order.new
+   @address = current_customer.addresses
  end
 
  def create
-  byebug
    @order = Order.new(order_params)
    @cart_items =CartItem.all
    @order.customer_id = current_customer.id
@@ -34,8 +34,13 @@ class Public::OrdersController < ApplicationController
  end
 
  def index
-  @order =Order.find_by(params[:created_at])
   @orders =current_customer.orders
+  @order =Order.find_by(params[:created_at])
+  if @order.customer_id = current_customer.id
+   render "index"
+  else
+   new_customer_session
+  end
  end
 
  def confirm

@@ -1,5 +1,5 @@
 class Admin::CustomersController < ApplicationController
-before_action :authenticate_admin!,except: [:top]
+before_action :authenticate_admin!, only: [:index, :show, :exit, :update]
   def index
     @customers = Customer.all
     @customers = Customer.paginate(page: params[:page], per_page: 5)

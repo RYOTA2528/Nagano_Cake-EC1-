@@ -1,5 +1,5 @@
 class Admin::ItemsController < ApplicationController
-
+before_action :authenticate_admin!, only: [:new, :create, :index, :show, :update, :edit]
   def new
     @item = Item.new
     @genres = Genre.all

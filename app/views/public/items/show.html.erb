@@ -2,7 +2,6 @@
  <div class="container px-5 px-sm-0">
   <div class="row pt-5">
    <div class="col-md-2">
-   ジャンル検索用スペース
     </div>
    <div class="offset-md-1 col-md-1">
     <%= attachment_image_tag @item, :image, :fill, 300, 300 %>
@@ -17,7 +16,8 @@
      <%= f.select :amount, *[1..10] ,{ prompt: "個数選択" } %>
     </div>
      <%= f.hidden_field :item_id, value: @item.id %>
-     
+     <%= f.hidden_field :image_id, value: @item.image_id %>
+
     <div>
     </div>
     <div class="actions">

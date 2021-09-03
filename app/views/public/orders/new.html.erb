@@ -28,7 +28,7 @@
     <div class="pb-1">
      <%= f.radio_button :select_address, "1" %>
      <%= f.label :address, "登録済み住所から選択" %><br />
-     <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :full_address) %>
+     <%= f.select :address_id, options_from_collection_for_select(@address.all, :id, :full_address) %>
     </div>
     <div class= "pb-1">
      <%= f.radio_button :select_address, "2" %>
