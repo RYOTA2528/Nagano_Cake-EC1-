@@ -1,5 +1,5 @@
 class Public::CartItemsController < ApplicationController
-before_action :authenticate_customer!, only: [:create,:edit, :update, :destory, :destory_all]
+before_action :authenticate_customer!, only: [:index, :create,:edit, :update, :destory, :destory_all]
  def create
    @cart_item = CartItem.new(cart_item_params)
    @cart_item.customer_id = current_customer.id

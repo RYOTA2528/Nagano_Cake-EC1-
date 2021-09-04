@@ -10,7 +10,7 @@
    <h4>注文ステータス</h4>
  </div>
  <div class ="col-md-8 offset-1">
-   <h4><%= @order.customer.last_name %></h4><br />
+   <h4><%= @order.customer.last_name %><%= @order.customer.first_name %></h4><br />
    <h4><%= l @order.created_at %></h4><br />
    <h4><%= @order.postal_code %><%= @order.address %><%= @order.name %></h4><br />
    <h4><%= @order.payment_method_i18n %></h4><br />

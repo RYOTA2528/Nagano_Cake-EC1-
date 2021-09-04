@@ -4,6 +4,7 @@ before_action :authenticate_admin!
   def index
     @genre = Genre.new
     @genres = Genre.all
+    @genres = Genre.paginate(page: params[:page], per_page: 5)
   end
 
   def create

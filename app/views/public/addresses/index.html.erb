@@ -35,9 +35,11 @@
       <td><%= address.postal_code %></td>
       <td><%= address.address %></td>
       <td><%= address.name %></td>
+      <div class="inline-block">
       <td><%= link_to"編集する", edit_address_path(address),  class:"btn btn-lg btn-block btn-info mt-4 col-3" %>
       <%= link_to "削除する", address_path(address), method: :delete, "data-confirm" => "本当に消しますか",  class:"btn btn-lg btn-block btn-info mt-4 col-3" %>
       </td>
+      </div>
       <% end %></tr>
      </tbody>
    </table>

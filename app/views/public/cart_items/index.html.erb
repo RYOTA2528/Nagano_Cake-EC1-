@@ -18,11 +18,11 @@
  <tr>
   <td>
    <%#= attachment_image_tag book, :book_image, :fill, 60, 60, fallback: "no_image.jpg"%>
-   <%#= attachment_image_tag cart_item, :image, :fill, 100, 100 %>
+   <%= attachment_image_tag cart_item.item, :image, :fill, 100, 100 %>
    <%= cart_item.item.name %>
   </td>
   <div class="inline-block">
-  <td inline-block><%= form_with model:cart_item, local:true do |f| %>
+  <td><%= form_with model:cart_item, local:true do |f| %>
    <%= f.select :amount, *[1..30] ,{ prompt: "個数選択" } %>
    <%= f.submit "変更", class:"btn btn-lg btn-block btn-info mt-4 col-md-5" %>
   </td>
